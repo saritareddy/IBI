@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Complaint" table="COMPLAINT" optimistic-lock="version">
+        <id name="compno" type="long">
+            <column name="COMPNO" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="compto" type="string">
+            <column name="COMPTO" length="180" not-null="true" />
+        </property>
+        <property name="compfrom" type="string">
+            <column name="COMPFROM" length="180" not-null="true" />
+        </property>
+        <property name="subject" type="string">
+            <column name="SUBJECT" length="180" not-null="true" />
+        </property>
+        <property name="compmatter" type="clob">
+            <column name="COMPMATTER" not-null="true" />
+        </property>
+        <property name="compdate" type="date">
+            <column name="COMPDATE" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

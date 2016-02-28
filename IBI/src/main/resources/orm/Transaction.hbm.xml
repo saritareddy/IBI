@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Transaction" table="TRANSACTION" optimistic-lock="version">
+        <id name="transid" type="long">
+            <column name="TRANSID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="customer" class="com.bank.model.Customer" fetch="select">
+            <column name="CUSTID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="account" class="com.bank.model.Account" fetch="select">
+            <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="trantype" type="string">
+            <column name="TRANTYPE" length="180" not-null="true" />
+        </property>
+        <property name="tranmethod" type="string">
+            <column name="TRANMETHOD" length="180" not-null="true" />
+        </property>
+        <property name="trandate" type="date">
+            <column name="TRANDATE" length="7" not-null="true" />
+        </property>
+        <property name="tranamt" type="double">
+            <column name="TRANAMT" precision="126" scale="0" not-null="true" />
+        </property>
+        <property name="chequenum" type="java.lang.Long">
+            <column name="CHEQUENUM" precision="10" scale="0" />
+        </property>
+        <property name="routingnum" type="string">
+            <column name="ROUTINGNUM" length="180" />
+        </property>
+    </class>
+</hibernate-mapping>

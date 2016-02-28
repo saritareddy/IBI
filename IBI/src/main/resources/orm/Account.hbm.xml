@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Account" table="ACCOUNT" optimistic-lock="version">
+        <id name="accnum" type="long">
+            <column name="ACCNUM" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="acctype" class="com.bank.model.Acctype" fetch="select">
+            <column name="ACCTYPEID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="accstatus" class="com.bank.model.Accstatus" fetch="select">
+            <column name="ACCSTATUSID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="currbal" type="java.lang.Double">
+            <column name="CURRBAL" precision="126" scale="0" />
+        </property>
+        <property name="oldbal" type="java.lang.Double">
+            <column name="OLDBAL" precision="126" scale="0" />
+        </property>
+        <property name="createdon" type="date">
+            <column name="CREATEDON" length="7" not-null="true" />
+        </property>
+        <property name="lastupdate" type="string">
+            <column name="LASTUPDATE" length="180" />
+        </property>
+        <set name="loans" table="LOAN" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Loan" />
+        </set>
+        <set name="transactions" table="TRANSACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Transaction" />
+        </set>
+        <set name="custaccs" table="CUSTACC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Custacc" />
+        </set>
+        <one-to-one name="overdraft" class="com.bank.model.Overdraft"></one-to-one>
+        <set name="loginaccs" table="LOGINACC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Loginacc" />
+        </set>
+    </class>
+</hibernate-mapping>

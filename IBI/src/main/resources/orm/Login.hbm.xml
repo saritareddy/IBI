@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Login" table="LOGIN" optimistic-lock="version">
+        <id name="loginid" type="long">
+            <column name="LOGINID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="string">
+            <column name="USERNAME" length="180" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="180" not-null="true" />
+        </property>
+        <property name="answer" type="string">
+            <column name="ANSWER" length="180" not-null="true" />
+        </property>
+        <property name="usertype" type="string">
+            <column name="USERTYPE" length="180" />
+        </property>
+        <property name="question" type="string">
+            <column name="QUESTION" length="400" not-null="true" />
+        </property>
+        <set name="loginaccs" table="LOGINACC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LOGINID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Loginacc" />
+        </set>
+    </class>
+</hibernate-mapping>

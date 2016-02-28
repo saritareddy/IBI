@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Loan" table="LOAN" optimistic-lock="version">
+        <composite-id name="id" class="com.bank.model.LoanId">
+            <key-property name="loanid" type="long">
+                <column name="LOANID" precision="10" scale="0" />
+            </key-property>
+            <key-property name="custid" type="long">
+                <column name="CUSTID" precision="10" scale="0" />
+            </key-property>
+            <key-property name="accnum" type="long">
+                <column name="ACCNUM" precision="10" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="employee" class="com.bank.model.Employee" fetch="select">
+            <column name="LOANCREATEDBY" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="com.bank.model.Customer" update="false" insert="false" fetch="select">
+            <column name="CUSTID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="loantype" class="com.bank.model.Loantype" fetch="select">
+            <column name="LOANTYPE" length="180" not-null="true" />
+        </many-to-one>
+        <many-to-one name="account" class="com.bank.model.Account" update="false" insert="false" fetch="select">
+            <column name="ACCNUM" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="loanduration" type="long">
+            <column name="LOANDURATION" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="profession" type="string">
+            <column name="PROFESSION" length="180" not-null="true" />
+        </property>
+        <property name="income" type="double">
+            <column name="INCOME" precision="126" scale="0" not-null="true" />
+        </property>
+        <property name="reqdate" type="date">
+            <column name="REQDATE" length="7" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="180" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

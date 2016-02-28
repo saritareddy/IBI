@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Loadpaid" table="LOADPAID" optimistic-lock="version">
+        <id name="paymentid" type="long">
+            <column name="PAYMENTID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="loanid" type="long">
+            <column name="LOANID" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="instdueamt" type="double">
+            <column name="INSTDUEAMT" precision="126" scale="0" not-null="true" />
+        </property>
+        <property name="instduedate" type="date">
+            <column name="INSTDUEDATE" length="7" not-null="true" />
+        </property>
+        <property name="paiddate" type="date">
+            <column name="PAIDDATE" length="7" not-null="true" />
+        </property>
+        <property name="paidamt" type="double">
+            <column name="PAIDAMT" precision="126" scale="0" not-null="true" />
+        </property>
+        <property name="noinstpaid" type="string">
+            <column name="NOINSTPAID" length="180" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

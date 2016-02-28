@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Customer" table="CUSTOMER" optimistic-lock="version">
+        <id name="custid" type="long">
+            <column name="CUSTID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employee" class="com.bank.model.Employee" fetch="select">
+            <column name="CREATEDBY" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="firstname" type="string">
+            <column name="FIRSTNAME" length="180" not-null="true" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="LASTNAME" length="180" not-null="true" />
+        </property>
+        <property name="age" type="long">
+            <column name="AGE" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="dob" type="date">
+            <column name="DOB" length="7" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="ADDRESS" length="180" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="180" not-null="true" />
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="180" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="180" not-null="true" />
+        </property>
+        <property name="sex" type="string">
+            <column name="SEX" length="24" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="PHONE" length="180" />
+        </property>
+        <property name="emailid" type="string">
+            <column name="EMAILID" length="240" />
+        </property>
+        <set name="loans" table="LOAN" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CUSTID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Loan" />
+        </set>
+        <set name="transactions" table="TRANSACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CUSTID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Transaction" />
+        </set>
+        <set name="custaccs" table="CUSTACC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CUSTID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.bank.model.Custacc" />
+        </set>
+    </class>
+</hibernate-mapping>

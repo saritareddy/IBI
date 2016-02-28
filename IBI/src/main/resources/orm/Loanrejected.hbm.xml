@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Loanrejected" table="LOANREJECTED" optimistic-lock="version">
+        <id name="loanrejid" type="long">
+            <column name="LOANREJID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="loanrejdate" type="date">
+            <column name="LOANREJDATE" length="7" not-null="true" />
+        </property>
+        <property name="loanrejby" type="long">
+            <column name="LOANREJBY" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="rejreason" type="clob">
+            <column name="REJREASON" not-null="true" />
+        </property>
+        <property name="loanid" type="long">
+            <column name="LOANID" precision="10" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

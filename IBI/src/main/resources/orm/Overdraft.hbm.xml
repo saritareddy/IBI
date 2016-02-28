@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2016 9:42:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.bank.model.Overdraft" table="OVERDRAFT" optimistic-lock="version">
+        <id name="accnum" type="long">
+            <column name="ACCNUM" precision="10" scale="0" />
+            <generator class="foreign">
+                <param name="property">account</param>
+            </generator>
+        </id>
+        <one-to-one name="account" class="com.bank.model.Account" constrained="true"></one-to-one>
+        <property name="overdraftdate" type="date">
+            <column name="OVERDRAFTDATE" length="7" not-null="true" />
+        </property>
+        <property name="overdraftamt" type="double">
+            <column name="OVERDRAFTAMT" precision="126" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
